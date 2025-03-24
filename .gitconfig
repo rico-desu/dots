@@ -1,0 +1,14 @@
+[user]
+	name = rico
+	email = rico@noreply.codeberg.org
+	signingkey = /home/rico/.ssh/id_ed25519_codeberg.pub
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[pull]
+	rebase = false
+[core]
+	editor = nvim

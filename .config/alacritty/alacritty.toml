@@ -1,0 +1,16 @@
+[general]
+import = [ "~/.config/alacritty/themes/kanagawa_dragon.toml"  ]
+
+[window]
+padding =  { x = 5, y = 5 }
+dynamic_padding = true
+opacity = 0.95
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
