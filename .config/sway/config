@@ -21,6 +21,7 @@ set $wallpaper /usr/share/backgrounds/linuxmint/sele_linuxmint.png
 #
 
 exec mako &
+exec nextcloud --background &
 
 #
 # I/O
@@ -44,14 +45,11 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 # Appearance
 #
 
-# Set the font
+gaps inner 8
 font pango:JetBrainsMono Nerd Font 10
 
-# Set the gaps
-gaps inner 8
-
-# GTK themes and fonts
 set $set-gsettings-key "gsettings set org.gnome.desktop.interface"
+
 exec_always {
     $set-gsettings-key gtk-theme "Mint-Y-Dark-Aqua"
     $set-gsettings-key icon-theme "Mint-Y-Sand"
@@ -82,7 +80,6 @@ bindsym F12 exec brightnessctl set +5%
 # Workspaces
 #
 
-# Change the workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -94,7 +91,6 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
-# Move the focused container to the workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -110,38 +106,30 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # Containers
 #
 
-# Move the focused container around the screen
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-# Change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 
-# Set the layout mode of the focused container
 bindsym $mod+b layout splith
 bindsym $mod+v layout splitv
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# Make the focused view fullscreen
 bindsym $mod+f fullscreen
 
-# Toggle the focused view between tiling and floating modes
 bindsym $mod+Shift+space floating toggle
 
-# Swap focus between the tiling and floating layers
 bindsym $mod+space focus mode_toggle
 
-# Move focus to the parent of the focused container
 bindsym $mod+a focus parent
 
-# Resize containers
 mode "resize" {
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
@@ -151,6 +139,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
 #
@@ -191,7 +180,6 @@ bindsym Alt+Control+Print exec grim -g "$(slurp)" - | wl-copy
 # Window rules
 #
 
-# Basic floating window rules
 for_window [window_role = "pop-up"] floating enable
 for_window [window_role = "bubble"] floating enable
 for_window [window_role = "dialog"] floating enable
@@ -203,14 +191,11 @@ for_window [app_id = "floating_update"] floating enable, resize set width 1000px
 for_window [class = "(?i)pinentry"] floating enable
 for_window [title = "Administrator privileges required"] floating enable
 
-# Make relevant Firefox windows float
+for_window [app_id = "mpv"] fullscreen enable
+
 for_window [title = "About Mozilla Firefox"] floating enable
 for_window [window_role = "About"] floating enable
 for_window [app_id = "firefox" title = "Library"] floating enable, border pixel 1, sticky enable
 
-# Kill the sharing indicator window for Firefox
 for_window [title = "Firefox - Sharing Indicator"] kill
 for_window [title = "Firefox — Sharing Indicator"] kill
-
-# Make mpv windows fullscreen
-for_window [app_id = "mpv"] fullscreen enable
